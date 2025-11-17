@@ -1,0 +1,103 @@
+// Simple variables
+$primary: #4f46e5;
+$gray: #6b7280;
+$light-gray: #f9fafb;
+$white: #ffffff;
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: system-ui, sans-serif;
+  background-color: $light-gray;
+  color: #333;
+}
+
+.container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 20px;
+}
+
+
+header {
+  background: $white;
+  box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+  
+  .container {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 15px 20px;
+  }
+}
+
+.brand {
+  display: flex;
+  align-items: center;
+  gap: 15px;
+}
+
+.logo {
+  height: 40px;
+}
+
+.title {
+  font-size: 24px;
+  font-weight: bold;
+  color: $primary;
+}
+
+nav {
+  display: flex;
+}
+
+.nav-list {
+  display: flex;
+  list-style: none;
+  gap: 30px;
+  align-items: center;
+}
+
+.nav-list a {
+  text-decoration: none;
+  color: $gray;
+  padding: 8px 16px;
+  border-radius: 6px;
+  transition: all 0.2s;
+}
+
+.nav-list a:hover {
+  color: $primary;
+  background-color: rgba($primary, 0.1);
+}
+
+.btn {
+  background-color: $primary !important;
+  color: $white !important;
+  font-weight: 600;
+  padding: 10px 20px !important;
+}
+
+.btn:hover {
+  background-color: darken($primary, 10%) !important;
+  transform: translateY(-2px);
+}
+
+main {
+  padding: 60px 0;
+  text-align: center;
+}
+
+h1 {
+  font-size: 48px;
+  margin-bottom: 20px;
+}
+
+p {
+  font-size: 18px;
+  color: $gray;
+}

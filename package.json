@@ -1,0 +1,19 @@
+{
+  "name": "ticketsy",
+  "version": "1.0.0",
+  "description": "",
+  "license": "ISC",
+  "author": "",
+  "type": "module",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "dependencies": {
+    "bootstrap": "^5.3.8",
+    "express": "^5.1.0",
+    "mongodb": "^7.0.0",
+    "pug": "^3.0.3",
+    "sass": "^1.94.0"
+  }
+}
