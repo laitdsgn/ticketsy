@@ -1,9 +1,12 @@
 import express from "express";
 
 const router = express.Router();
+const app = express();
+app.set("view engine", "pug");
+app.set("views", "../views/");
 
 router.get("/", (req, res) => {
-  res.send("register page");
+  res.render("register");
   console.log("Register");
 });
 

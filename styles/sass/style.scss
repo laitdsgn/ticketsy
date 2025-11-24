@@ -22,6 +22,10 @@ body {
   padding: 0 20px;
 }
 
+.greeter {
+  position: relative;
+  top: 200px;
+}
 
 header {
   background: $white;
@@ -94,7 +98,17 @@ main {
 
 h1 {
   font-size: 48px;
-  margin-bottom: 20px;
+  margin-bottom: 8px;
+}
+
+h2 {
+  font-size: 30px;
+  color: $white;
+  width: 280px;
+  padding: 3px;
+  border-radius: 3px;
+  margin: auto;
+   background-color: $primary;
 }
 
 p {
