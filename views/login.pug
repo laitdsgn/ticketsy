@@ -22,5 +22,28 @@ html
               a.btn(href="/register") Sign Up
     
     main
-      .container
+      .form-container
+        .form-card
+          h1 Welcome Back
+          p.form-subtitle Sign in to your account
+          
+          form.form(action="/login" method="POST")
+            .form-group
+              label(for="email") Email
+              input#email(type="email" name="email" placeholder="your@email.com" required)
+            
+            .form-group
+              label(for="password") Password
+              input#password(type="password" name="password" placeholder="Enter your password" required)
+            
+            .form-options
+              label.checkbox
+                input(type="checkbox" name="remember")
+                span Remember me
+              a.forgot-link(href="/forgot-password") Forgot password?
+            
+            button.btn.btn-full(type="submit") Sign In
+          
+          p.form-footer Don't have an account? 
+            a(href="/register") Sign up
 

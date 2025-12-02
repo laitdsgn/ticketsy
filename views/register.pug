@@ -22,4 +22,33 @@ html
               a.btn(href="/register") Sign Up
 
     main
-      .container
+      .form-container
+        .form-card
+          h1 Create Account
+          p.form-subtitle Join Ticketsy today
+          
+          form.form(action="/register" method="POST")
+            .form-group
+              label(for="name") Full Name
+              input#name(type="text" name="name" placeholder="John Doe" required)
+            
+            .form-group
+              label(for="email") Email
+              input#email(type="email" name="email" placeholder="your@email.com" required)
+            
+            .form-group
+              label(for="password") Password
+              input#password(type="password" name="password" placeholder="Create a password" required)
+            
+            .form-group
+              label(for="confirm-password") Confirm Password
+              input#confirm-password(type="password" name="confirmPassword" placeholder="Confirm your password" required)
+            
+            label.checkbox
+              input(type="checkbox" name="terms" required)
+              span I agree to the Terms and Conditions
+            
+            button.btn.btn-full(type="submit") Create Account
+          
+          p.form-footer Already have an account? 
+            a(href="/login") Sign in
