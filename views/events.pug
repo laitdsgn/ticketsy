@@ -23,33 +23,115 @@ html
 
     main
       .events-container
-        .event
-          img.logo(src="/demo.jpg", alt="thumbnail" )
-          .event-content
-            h2.title xddddd
-        .event
-          img.logo(src="/demo.jpg", alt="thumbnail" )
-          .event-content
-            h2.title xddddd
-        .event
-          img.logo(src="/demo.jpg", alt="thumbnail" )
-          .event-content
-            h2.title xddddd
-        .event
-          img.logo(src="/demo.jpg", alt="thumbnail" )
-          .event-content
-            h2.title xddddd 
-        .event
-          img.logo(src="/demo.jpg", alt="thumbnail" )
-          .event-content
-            h2.title xddddd
-        .event
-          img.logo(src="/demo.jpg", alt="thumbnail" )
-          .event-content
-            h2.title xddddd
-        .event
-          img.logo(src="/demo.jpg", alt="thumbnail" )
-          .event-content
-            h2.title xddddd
+        .gallery 
+          button#previous poprzedni
+          button#next nastepny
+          .event
+            img.event-img(src="/demo.jpg", alt="Event thumbnail")
+            .event-content
+              .event-header
+                h2.event-title Summer Music Festival
+                span.event-date 15 sierpnia 2025
+              p.event-description Przeżyj niezapomnianą noc pełną muzyki na żywo z najlepszymi artystami z całego świata.
+              .event-footer
+                .price-tag 45 zł
+                .event-details
+                  span.seats-count 234 miejsc
+                  button.event-btn Kup bilet
           
-
+          .event
+            img.event-img(src="/demo.jpg", alt="Event thumbnail")
+            .event-content
+              .event-header
+                h2.event-title Tech Conference 2025
+                span.event-date 10 września 2025
+              p.event-description Dołącz do liderów branży na dzień pełen innowacji, networkingu i najnowszych technologii.
+              .event-footer
+                .price-tag 120 zł
+                .event-details
+                  span.seats-count 89 miejsc
+                  button.event-btn Kup bilet
+          
+          .event
+            img.event-img(src="/demo.jpg", alt="Event thumbnail")
+            .event-content
+              .event-header
+                h2.event-title Comedy Night Special
+                span.event-date 22 lipca 2025
+              p.event-description Śmiej się do łez podczas występów najlepszych komików prezentujących swoje stand-upy.
+              .event-footer
+                .price-tag 35 zł
+                .event-details
+                  span.seats-count 156 miejsc
+                  button.event-btn Kup bilet
+        
+          .event
+            img.event-img(src="/demo.jpg", alt="Event thumbnail")
+            .event-content
+              .event-header
+                h2.event-title Art Exhibition
+                span.event-date 5 sierpnia 2025
+              p.event-description Odkryj zachwycające dzieła sztuki współczesnej od wschodzących i uznanych artystów z całego świata.
+              .event-footer
+                .price-tag 25 zł
+                .event-details
+                  span.seats-count 312 miejsc
+                  button.event-btn Kup bilet
+          
+          .event
+            img.event-img(src="/demo.jpg", alt="Event thumbnail")
+            .event-content
+              .event-header
+                h2.event-title Food & Wine Festival
+                span.event-date 18 września 2025
+              p.event-description Skosztuj wyśmienitych dań i win od znanych szefów kuchni oraz najlepszych winnic.
+              .event-footer
+                .price-tag 75 zł
+                .event-details
+                  span.seats-count 45 miejsc
+                  button.event-btn Kup bilet
+          
+          .event
+            img.event-img(src="/demo.jpg", alt="Event thumbnail")
+            .event-content
+              .event-header
+                h2.event-title Sports Championship
+                span.event-date 3 października 2025
+              p.event-description Zobacz najbardziej wyczekiwany mecz sezonu pełen emocji i sportowych wrażeń.
+              .event-footer
+                .price-tag 95 zł
+                .event-details
+                  span.seats-count 678 miejsc
+                  button.event-btn Kup bilet
+    
+    footer.footer
+      .container
+        .footer-content
+          .footer-section
+            h3 Ticketsy
+            p Your ultimate destination for discovering and booking amazing events worldwide.
+          
+          .footer-section
+            h3 Quick Links
+            ul.footer-links
+              li
+                a(href="/") Home
+              li
+                a(href="/events") Events
+              li
+                a(href="/about") About Us
+              li
+                a(href="/contact") Contact
+          
+          .footer-section
+            h3 Follow Us
+            .social-links
+              a(href="#" aria-label="Facebook") Facebook
+              a(href="#" aria-label="Twitter") Twitter
+              a(href="#" aria-label="Instagram") Instagram
+              a(href="#" aria-label="LinkedIn") LinkedIn
+        
+        .footer-bottom
+          p &copy; 2025 Ticketsy. All rights reserved. | Portfolio Project
+    
+    script(src="/frontend/events-carousel.js")
