@@ -2,6 +2,7 @@ import express from "express";
 import loginRoutes from "./routes/login.js";
 import registerRoutes from "./routes/register.js";
 import eventsRoutes from "./routes/events.js";
+import cmsRoutes from "./routes/cms.js";
 
 const app = express();
 
@@ -17,5 +18,6 @@ app.get("/", (req, res) => {
 app.use("/login", loginRoutes);
 app.use("/register", registerRoutes);
 app.use("/events", eventsRoutes);
+app.use("/admin-panel", cmsRoutes);
 
 app.listen(3000);

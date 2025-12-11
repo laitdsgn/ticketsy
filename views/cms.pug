@@ -1,0 +1,37 @@
+doctype html
+html
+  head
+    meta(name='viewport', content='width=device-width')
+    meta(charset='utf-8')
+    link(rel="stylesheet", href="/styles/sass/style.css")
+    link(rel="stylesheet", href="/styles/sass/cms-style.css")
+    title CMS
+  body
+    header
+      .container
+        .brand
+          img.logo(src="/ticketsy.png", alt="Ticketsy Logo")
+        nav
+          ul.nav-list
+            li
+              a(href="/") Home
+            li
+              a(href="/events") Events
+            li
+              a(href="/login") Login
+            li
+              a.btn(href="/register") Sign Up
+  main 
+      .panel-options-grid
+        .card
+          button dodaj event
+        .card
+          h2 aktualne eventy
+        .card
+          h2 uzytkownicy
+        .card
+          h2 analityka
+        .card
+          h2 test DB
+        .card
+          h2 informacje

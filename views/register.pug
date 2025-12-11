@@ -1,5 +1,5 @@
 doctype html
-html
+html(lang="pl")
   head
     meta(name='viewport', content='width=device-width')
     meta(charset='utf-8')
@@ -24,31 +24,44 @@ html
     main
       .form-container
         .form-card
-          h1 Create Account
-          p.form-subtitle Join Ticketsy today
+          h1 Stwórz konto
+          p.form-subtitle Dołącz do Ticketsy
           
           form.form(action="/register" method="POST")
             .form-group
-              label(for="name") Full Name
-              input#name(type="text" name="name" placeholder="John Doe" required)
-            
-            .form-group
               label(for="email") Email
-              input#email(type="email" name="email" placeholder="your@email.com" required)
+              input#email(type="email" name="email" placeholder="twoj@email.com" required)
             
             .form-group
-              label(for="password") Password
-              input#password(type="password" name="password" placeholder="Create a password" required)
+              label(for="password") Hasło
+              input#password(type="password" name="password" placeholder="Stwórz hasło" required)
             
             .form-group
-              label(for="confirm-password") Confirm Password
-              input#confirm-password(type="password" name="confirmPassword" placeholder="Confirm your password" required)
+              label(for="confirm-password") Potwierdź Hasło
+              input#confirm-password(type="password" name="confirmPassword" placeholder="Potwierdź swoje hasło" required)
             
-            label.checkbox
-              input(type="checkbox" name="terms" required)
-              span I agree to the Terms and Conditions
-            
-            button.btn.btn-full(type="submit") Create Account
+            button.btn.btn-full(type="submit") Stwórz Konto
           
-          p.form-footer Already have an account? 
-            a(href="/login") Sign in
+          p.form-footer Masz już konto?
+            a(href="/login") Zaloguj się
+    footer.footer
+      .container
+        .footer-content
+          .footer-section
+            h3 Ticketsy
+            p Twoje miejsce do odkrywania i kupowania biletów na najlepsze wydarzenia.
+          
+          .footer-section
+            h3 Szybkie linki
+            ul.footer-links
+              li
+                a(href="/") Strona główna
+              li
+                a(href="/events") Wydarzenia
+              li
+                a(href="/about") O nas
+              li
+                a(href="/contact") Kontakt
+        
+        .footer-bottom
+          p &copy; 2025 Ticketsy. Wszelkie prawa zastrzeżone. | Projekt portfolio

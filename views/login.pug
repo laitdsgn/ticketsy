@@ -1,5 +1,5 @@
 doctype html
-html
+html(lang="pl")
   head
     meta(name='viewport', content='width=device-width')
     meta(charset='utf-8')
@@ -24,26 +24,47 @@ html
     main
       .form-container
         .form-card
-          h1 Welcome Back
-          p.form-subtitle Sign in to your account
+          h1 Witamy spowrotem!
+          p.form-subtitle Zaloguj się na konto
           
           form.form(action="/login" method="POST")
             .form-group
               label(for="email") Email
-              input#email(type="email" name="email" placeholder="your@email.com" required)
+              input#email(type="email" name="email" placeholder="twoj@email.com" required)
             
             .form-group
-              label(for="password") Password
-              input#password(type="password" name="password" placeholder="Enter your password" required)
+              label(for="password") Hasło
+              input#password(type="password" name="password" placeholder="Wpisz swoje haslo" required)
             
             .form-options
               label.checkbox
                 input(type="checkbox" name="remember")
-                span Remember me
-              a.forgot-link(href="/forgot-password") Forgot password?
+                span Zapamiętaj mnie
+
             
-            button.btn.btn-full(type="submit") Sign In
+            button.btn.btn-full(type="submit") Zaloguj
           
-          p.form-footer Don't have an account? 
-            a(href="/register") Sign up
+          p.form-footer Nie masz jeszcze konta? 
+            a(href="/register")  Zarejestruj się
+    footer.footer
+      .container
+        .footer-content
+          .footer-section
+            h3 Ticketsy
+            p Twoje miejsce do odkrywania i kupowania biletów na najlepsze wydarzenia.
+          
+          .footer-section
+            h3 Szybkie linki
+            ul.footer-links
+              li
+                a(href="/") Strona główna
+              li
+                a(href="/events") Wydarzenia
+              li
+                a(href="/about") O nas
+              li
+                a(href="/contact") Kontakt
+        
+        .footer-bottom
+          p &copy; 2025 Ticketsy. Wszelkie prawa zastrzeżone. | Projekt portfolio
 
