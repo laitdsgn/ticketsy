@@ -12,7 +12,7 @@ app.use("/styles", express.static("styles"));
 app.set("view engine", "pug");
 app.set("views", "./views");
 app.get("/", (req, res) => {
-  res.render("home", { user: "xyz" });
+  res.render("home");
 });
 
 app.use("/login", loginRoutes);
