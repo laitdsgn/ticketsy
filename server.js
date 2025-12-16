@@ -6,6 +6,9 @@ import cmsRoutes from "./routes/cms.js";
 
 const app = express();
 
+app.use(express.json());
+app.use(express.urlencoded({ extended: true }));
+
 app.use(express.static("public"));
 app.use("/styles", express.static("styles"));
 

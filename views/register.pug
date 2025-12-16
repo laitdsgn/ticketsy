@@ -39,6 +39,7 @@ html(lang="pl")
             .form-group
               label(for="confirm-password") Potwierdź Hasło
               input#confirm-password(type="password" name="confirmPassword" placeholder="Potwierdź swoje hasło" required)
+              <div class="invalid-feedback">Passwords do not match</div>
             
             button.btn.btn-full(type="submit") Stwórz Konto
           
@@ -65,3 +66,4 @@ html(lang="pl")
         
         .footer-bottom
           p &copy; 2025 Ticketsy. Wszelkie prawa zastrzeżone. | Projekt portfolio
+  script(src="frontend/register-pass.js") 
