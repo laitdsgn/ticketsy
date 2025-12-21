@@ -330,6 +330,27 @@ p {
     &::placeholder {
       color: #9ca3af;
     }
+
+    &.is-invalid {
+      border-color: #dc3545;
+      &:focus {
+        box-shadow: 0 0 0 3px rgba(220, 53, 69, 0.2);
+      }
+    }
+
+    &.is-valid {
+      border-color: #198754;
+      &:focus {
+        box-shadow: 0 0 0 3px rgba(25, 135, 84, 0.2);
+      }
+    }
+  }
+
+  .invalid-feedback {
+    display: none;
+    color: #dc3545;
+    font-size: 13px;
+    margin-top: 4px;
   }
 }
 

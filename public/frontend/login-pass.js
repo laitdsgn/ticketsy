@@ -1,6 +1,5 @@
-document.addEventListener("DOMContentLoaded", function () {
+document.addEventListener("DOMContentLoaded", () => {
   const pass = document.getElementById("password");
-  const passRep = document.getElementById("confirm-password");
   const email = document.getElementById("email");
   const form = document.querySelector("form");
 
@@ -42,29 +41,8 @@ document.addEventListener("DOMContentLoaded", function () {
     }
   }
 
-  function validateConfirmPassword() {
-    const errorEl = document.getElementById("confirm-password-error");
-
-    if (pass.value !== passRep.value) {
-      passRep.classList.add("is-invalid");
-      passRep.classList.remove("is-valid");
-      errorEl.textContent = "Hasła nie są takie same";
-      errorEl.style.display = "block";
-      return false;
-    } else {
-      passRep.classList.remove("is-invalid");
-      passRep.classList.add("is-valid");
-      errorEl.style.display = "none";
-      return true;
-    }
-  }
-
   email.addEventListener("input", validateEmail);
-  pass.addEventListener("input", () => {
-    validatePassword();
-    if (passRep.value) validateConfirmPassword();
-  });
-  passRep.addEventListener("input", validateConfirmPassword);
+  pass.addEventListener("input", validatePassword);
 
   form.addEventListener("submit", (e) => {
     const isEmailValid = validateEmail();

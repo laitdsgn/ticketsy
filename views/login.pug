@@ -16,10 +16,14 @@ html(lang="pl")
               a(href="/") Home
             li
               a(href="/events") Events
-            li
-              a(href="/login") Login
-            li
-              a.btn(href="/register") Sign Up
+            if isLoggedIn
+              li
+                a.btn(href="/logout") Wyloguj
+            else
+              li
+                a(href="/login") Login
+              li
+                a.btn(href="/register") Sign Up
     
     main
       .form-container
@@ -27,15 +31,20 @@ html(lang="pl")
           h1 Witamy spowrotem!
           p.form-subtitle Zaloguj się na konto
           
+          if error
+            .alert-error= error
+          
           form.form(action="/login" method="POST")
             .form-group
               label(for="email") Email
               input#email(type="email" name="email" placeholder="twoj@email.com" required)
+              .invalid-feedback#email-error Email musi zawierać @ i .
             
             .form-group
               label(for="password") Hasło
               input#password(type="password" name="password" placeholder="Wpisz swoje haslo" required)
-            
+              .invalid-feedback#password-error Hasło musi mieć min. 8 znaków, wielką literę, cyfrę i znak specjalny
+
             .form-options
               label.checkbox
                 input(type="checkbox" name="remember")
@@ -67,4 +76,5 @@ html(lang="pl")
         
         .footer-bottom
           p &copy; 2025 Ticketsy. Wszelkie prawa zastrzeżone. | Projekt portfolio
+  script(src="frontend/login-pass.js") 
 

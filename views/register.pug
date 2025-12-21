@@ -16,10 +16,14 @@ html(lang="pl")
               a(href="/") Home
             li
               a(href="/events") Events
-            li
-              a(href="/login") Login
-            li
-              a.btn(href="/register") Sign Up
+            if isLoggedIn
+              li
+                a.btn(href="/logout") Wyloguj
+            else
+              li
+                a(href="/login") Login
+              li
+                a.btn(href="/register") Sign Up
 
     main
       .form-container
@@ -31,15 +35,17 @@ html(lang="pl")
             .form-group
               label(for="email") Email
               input#email(type="email" name="email" placeholder="twoj@email.com" required)
+              .invalid-feedback#email-error Email musi zawierać @ i .
             
             .form-group
               label(for="password") Hasło
               input#password(type="password" name="password" placeholder="Stwórz hasło" required)
+              .invalid-feedback#password-error Hasło musi mieć min. 8 znaków, wielką literę, cyfrę i znak specjalny
             
             .form-group
               label(for="confirm-password") Potwierdź Hasło
               input#confirm-password(type="password" name="confirmPassword" placeholder="Potwierdź swoje hasło" required)
-              <div class="invalid-feedback">Passwords do not match</div>
+              .invalid-feedback#confirm-password-error Hasła nie są takie same
             
             button.btn.btn-full(type="submit") Stwórz Konto
           

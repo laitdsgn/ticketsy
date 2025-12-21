@@ -16,10 +16,14 @@ html
               a(href="/") Home
             li
               a(href="/events") Events
-            li
-              a(href="/login") Login
-            li
-              a.btn(href="/register") Sign Up
+            if isLoggedIn
+              li
+                a.btn(href="/logout") Wyloguj
+            else
+              li
+                a(href="/login") Login
+              li
+                a.btn(href="/register") Sign Up
     
     main
       .container
