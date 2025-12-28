@@ -5,6 +5,7 @@ import registerRoutes from "./routes/register.js";
 import eventsRoutes from "./routes/events.js";
 import cmsRoutes from "./routes/cms.js";
 import { db } from "./public/mongoconnect.js";
+
 const app = express();
 
 app.use(express.json());

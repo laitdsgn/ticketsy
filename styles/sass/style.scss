@@ -19,14 +19,10 @@ body {
   flex-direction: column;
 }
 
-
-
 .container {
   max-width: 1200px;
   margin: 0 auto;
   padding: 0 20px;
-
-
 }
 
 .events-container .gallery {
@@ -40,24 +36,24 @@ body {
     display: flex;
     flex-direction: column;
     border-radius: 12px;
-    box-shadow: 0 2px 10px rgba(0,0,0,0.08);
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.08);
     overflow: hidden;
     border: 1px solid #e5e7eb;
     background-color: $white;
     transition: all 0.3s ease;
-    
+
     &:hover {
       transform: translateY(-8px);
-      box-shadow: 0 12px 24px rgba(0,0,0,0.15);
+      box-shadow: 0 12px 24px rgba(0, 0, 0, 0.15);
     }
   }
-  
+
   .event-img {
     width: 100%;
     height: 220px;
     object-fit: cover;
   }
-  
+
   .event-content {
     padding: 20px;
     display: flex;
@@ -65,7 +61,7 @@ body {
     gap: 12px;
     flex-grow: 1;
   }
-  
+
   .event-header {
     display: flex;
 
@@ -73,18 +69,16 @@ body {
     align-items: flex-start;
     gap: 12px;
 
-     .event-title {
-    font-size: 20px;
-    line-clamp: 1;
-    font-weight: 600;
-    color: #1f2937;
-    margin: 0;
-    flex: 1;
+    .event-title {
+      font-size: 20px;
+      line-clamp: 1;
+      font-weight: 600;
+      color: #1f2937;
+      margin: 0;
+      flex: 1;
+    }
   }
-  }
-  
- 
-  
+
   .event-date {
     font-size: 13px;
     color: $white;
@@ -94,14 +88,14 @@ body {
     font-weight: 600;
     white-space: nowrap;
   }
-  
+
   .event-description {
     font-size: 14px;
     color: $gray;
     line-height: 1.6;
     margin: 0;
   }
-  
+
   .event-footer {
     margin-top: auto;
     padding-top: 16px;
@@ -110,20 +104,20 @@ body {
     justify-content: space-between;
     gap: 16px;
   }
-  
+
   .price-tag {
     font-size: 28px;
     font-weight: 700;
     color: $primary;
   }
-  
+
   .event-details {
     display: flex;
     flex-direction: column;
     align-items: flex-end;
     gap: 8px;
   }
-  
+
   .seats-count {
     font-size: 12px;
     color: $gray;
@@ -131,7 +125,7 @@ body {
     text-transform: uppercase;
     letter-spacing: 0.5px;
   }
-  
+
   .event-btn {
     background: linear-gradient(135deg, $primary 0%, darken($primary, 8%) 100%);
     color: $white;
@@ -143,14 +137,18 @@ body {
     cursor: pointer;
     transition: all 0.3s ease;
     box-shadow: 0 4px 12px rgba($primary, 0.3);
-transform: translateY(-60%);
-    
+    transform: translateY(-60%);
+
     &:hover {
       transform: translateY(-1px);
       box-shadow: 0 6px 16px rgba($primary, 0.4);
-      background: linear-gradient(135deg, darken($primary, 5%) 0%, darken($primary, 12%) 100%);
+      background: linear-gradient(
+        135deg,
+        darken($primary, 5%) 0%,
+        darken($primary, 12%) 100%
+      );
     }
-    
+
     &:active {
       transform: translateY(0);
     }
@@ -179,17 +177,15 @@ transform: translateY(-60%);
 
 header {
   background: $white;
-  box-shadow: 0 2px 10px rgba(0,0,0,0.1);
-  
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+
   .container {
     display: flex;
     align-items: center;
     justify-content: space-between;
     padding: 15px 20px;
-
   }
 }
-
 
 .brand {
   display: flex;
@@ -225,21 +221,19 @@ nav {
   padding: 8px 30px;
   border-radius: 6px;
   transition: all 0.2s;
-
 }
 
-  .btn {
+.btn {
   background-color: $primary;
   color: $white !important;
   font-weight: 600;
-  padding: 10px 20px ;
+  padding: 10px 20px;
 }
 
 .nav-list a:hover {
   color: $primary;
   background-color: rgba($primary, 0.1);
 }
-
 
 .btn:hover {
   background-color: darken($primary, 90%);
@@ -258,12 +252,10 @@ h1 {
   margin-bottom: 8px;
 }
 
-
 p {
   font-size: 18px;
   color: $gray;
 }
-
 
 .form-container {
   display: flex;
@@ -277,7 +269,7 @@ p {
   background: $white;
   padding: 40px;
   border-radius: 12px;
-  box-shadow: 0 4px 20px rgba(0,0,0,0.1);
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
   width: 100%;
   max-width: 450px;
   text-align: left;
@@ -379,7 +371,6 @@ p {
   }
 }
 
-
 .btn-full {
   width: 100%;
   padding: 14px !important;
@@ -407,7 +398,6 @@ p {
   }
 }
 
-
 .events-container {
   position: relative;
   padding: 80px 0;
@@ -429,16 +419,15 @@ p {
     position: absolute;
     left: 50%;
     width: 420px;
-    margin-left: -210px; 
+    margin-left: -210px;
     transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
     display: flex;
     flex-direction: column;
     border-radius: 16px;
-    box-shadow: 0 8px 24px rgba(0,0,0,0.12);
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.12);
     overflow: hidden;
     border: none;
     background-color: $white;
-    
 
     &.active {
       transform: translateX(0) scale(1) translateZ(0);
@@ -447,7 +436,6 @@ p {
       box-shadow: 0 24px 48px rgba(79, 70, 229, 0.25);
       pointer-events: auto;
     }
-    
 
     &.prev {
       transform: translateX(-480px) scale(0.88) translateZ(-100px);
@@ -456,8 +444,7 @@ p {
       filter: blur(1px) brightness(0.85);
       pointer-events: none;
     }
-    
- 
+
     &.next {
       transform: translateX(480px) scale(0.88) translateZ(-100px);
       opacity: 0.6;
@@ -465,8 +452,7 @@ p {
       filter: blur(1px) brightness(0.85);
       pointer-events: none;
     }
-    
-    
+
     &.hidden {
       transform: translateX(0) scale(0.5);
       opacity: 0;
@@ -474,13 +460,12 @@ p {
       pointer-events: none;
     }
 
-    
     .event-img {
       width: 100%;
       height: 240px;
       object-fit: cover;
     }
-    
+
     .event-content {
       padding: 24px;
       display: flex;
@@ -488,14 +473,14 @@ p {
       gap: 14px;
       flex-grow: 1;
     }
-    
+
     .event-header {
       display: flex;
       justify-content: space-between;
       align-items: flex-start;
       gap: 12px;
     }
-    
+
     .event-title {
       font-size: 22px;
       font-weight: 700;
@@ -503,7 +488,7 @@ p {
       margin: 0;
       flex: 1;
     }
-    
+
     .event-date {
       font-size: 13px;
       color: $white;
@@ -513,14 +498,14 @@ p {
       font-weight: 600;
       white-space: nowrap;
     }
-    
+
     .event-description {
       font-size: 14px;
       color: $gray;
       line-height: 1.6;
       margin: 0;
     }
-    
+
     .event-footer {
       margin-top: auto;
       padding-top: 16px;
@@ -528,14 +513,14 @@ p {
       flex-direction: column;
       gap: 16px;
     }
-    
+
     .price-tag {
       font-size: 32px;
       font-weight: 700;
       color: $primary;
       line-height: 1;
     }
-    
+
     .event-details {
       display: flex;
       flex-direction: row;
@@ -544,7 +529,7 @@ p {
       gap: 12px;
       width: 100%;
     }
-    
+
     .seats-count {
       font-size: 12px;
       color: $gray;
@@ -552,9 +537,13 @@ p {
       text-transform: uppercase;
       letter-spacing: 0.5px;
     }
-    
+
     .event-btn {
-      background: linear-gradient(135deg, $primary 0%, darken($primary, 8%) 100%);
+      background: linear-gradient(
+        135deg,
+        $primary 0%,
+        darken($primary, 8%) 100%
+      );
       color: $white;
       border: none;
       width: 140px;
@@ -568,13 +557,17 @@ p {
       box-shadow: 0 4px 12px rgba($primary, 0.3);
       white-space: nowrap;
       flex-shrink: 0;
-      
+
       &:hover {
         transform: translateY(-30px);
         box-shadow: 0 6px 20px rgba($primary, 0.45);
-        background: linear-gradient(135deg, darken($primary, 5%) 0%, darken($primary, 12%) 100%);
+        background: linear-gradient(
+          135deg,
+          darken($primary, 5%) 0%,
+          darken($primary, 12%) 100%
+        );
       }
-      
+
       &:active {
         transform: translateY(-25px);
       }
@@ -595,42 +588,44 @@ p {
     font-size: 0;
     cursor: pointer;
     transition: all 0.3s ease;
-    box-shadow: 0 8px 20px rgba(0,0,0,0.15);
-    
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
+
     &:hover {
       background: $primary;
       color: $white;
       transform: translateY(-50%) scale(1.15);
       box-shadow: 0 12px 28px rgba(79, 70, 229, 0.35);
     }
-    
+
     &:active {
       transform: translateY(-50%) scale(1.05);
     }
   }
+}
 
-  #previous {
-    left: 15%;
-    
-    &::before {
-      content: '←';
-      font-size: 24px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-    }
+#previous {
+  left: 15%;
+  padding: 3px 13px 3px 13px;
+  border-radius: 2rem;
+  &::before {
+    content: "←";
+    font-size: 24px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
   }
+}
 
-  #next {
-    right: 15%;
-    
-    &::before {
-      content: '→';
-      font-size: 24px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-    }
+#next {
+  right: 15%;
+  padding: 3px 13px 3px 13px;
+  border-radius: 2rem;
+  &::before {
+    content: "→";
+    font-size: 24px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
   }
 }
 

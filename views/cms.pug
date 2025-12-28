@@ -30,7 +30,7 @@ html
       .panel-options-grid
         .card
           .card-content
-            form(action="")
+            form(action="/admin-panel" method="POST" enctype="multipart/form-data")
               h2.mb-3 Dodaj Event
               .card-inputs
                 input.form-control.mb-2(type="text", name="title" placeholder="Tytuł")
@@ -39,7 +39,7 @@ html
                 input.form-control.mb-2(type="text", name="location" placeholder="Miejsce wydarzenia")
                 input.form-control.mb-2(type="number", name="price" placeholder="Cena")
                 input.form-control.mb-2(type="number", name="totalSeats" placeholder="Całkowita liczba miejsc np. 100")
-                input.form-control.mb-3(type="file", name="thumbnail")
+                input.form-control.mb-3(type="file", name="thumbnail" accept="image/png, image/gif, image/jpeg")
               button(type="submit").btn.btn-primary Zaakceptuj
         .card
           h2.mb-3 Aktualne eventy
