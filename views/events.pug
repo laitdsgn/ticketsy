@@ -31,7 +31,21 @@ html
           button#previous(type="button")
           button#next(type="button")
         .gallery
-    
+      .buy-form
+        button(type="button" id="close-buy") X 
+        form(action="/events/ticket", method="post").form 
+          h2 KUP BILET
+          input(type="text", name="id" hidden id="id-v")
+          br
+          input(type="number", name="seat" placeholder="Miejsce" id="totalSeats")
+          br
+          input(type="text", name="imie" placeholder="Imie")
+          br
+          input(type="text", name="nazwisko" placeholder="Nazwisko")
+          br
+          input(type="number", name="wiek" min="18" placeholder="Wiek (min 18 lat)")
+          br
+          button(type="submit").btn.btn-primary ZAAKCEPTUJ
     footer.footer
       .container
         .footer-content
@@ -55,3 +69,4 @@ html
           p &copy; 2025 Ticketsy. Wszelkie prawa zastrzeżone. | Projekt portfolio
     
     script(src="/frontend/events-carousel.js")
+    script(src="/frontend/events-ticket.js")

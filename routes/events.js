@@ -5,11 +5,18 @@ import { MongoClient, ObjectId } from "mongodb";
 const router = express.Router();
 
 router.get("/", async (req, res) => {
-  connect();
-  res.render("events");
-  console.log("events");
+  try {
+    await connect();
+    res.render("events");
+    console.log("events");
+  } catch (err) {
+    res.status(500).send("Server error");
+  }
+});
 
-  return await db.collection("events").find({});
+router.post("/ticket", async (req, res) => {
+  const { id, seat, imie, nazwisko, wiek } = req.body;
+  console.log(id, imie, seat, nazwisko, wiek);
 });
 
 router.get("/get-events", async (req, res) => {

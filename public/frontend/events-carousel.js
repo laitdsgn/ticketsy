@@ -2,7 +2,11 @@ document.addEventListener("DOMContentLoaded", () => {
   const gallery = document.querySelector(".gallery");
   const previousBtn = document.getElementById("previous");
   const nextBtn = document.getElementById("next");
-
+  const eventBtns = document.getElementsByClassName("event-btn");
+  const buyForm = document.querySelector(".buy-form");
+  const idValueForm = document.getElementById("id-v");
+  const totalSeat = document.getElementById("totalSeats");
+  const closeBuy = document.getElementById("close-buy");
   let currentIndex = 0;
   let events = [];
 
@@ -37,12 +41,25 @@ document.addEventListener("DOMContentLoaded", () => {
               <span class="seats-count">${
                 ev.totalSeats ? ev.totalSeats + " miejsc" : ""
               }</span>
-              <button class="event-btn">Kup bilet</button>
+              <button class="event-btn" data-event-id="${
+                ev._id
+              }" data-total-seats="${ev.totalSeats}">Kup bilet</button>
             </div>
           </div>
         </div>
       `;
       gallery.appendChild(eventDiv);
+      for (let eventBtn of eventBtns) {
+        eventBtn.addEventListener("click", (e) => {
+          const eventId = eventBtn.getAttribute("data-event-id");
+          const totalSeatsValue = eventBtn.getAttribute("data-total-seats");
+
+          buyForm.style.display = "block";
+          idValueForm.value = eventId;
+          totalSeat.min = 1;
+          totalSeats.max = totalSeatsValue;
+        });
+      }
     });
   }
 
@@ -80,5 +97,8 @@ document.addEventListener("DOMContentLoaded", () => {
     if (events.length === 0) return;
     currentIndex = (currentIndex + 1) % events.length;
     updateCarousel();
+  });
+  closeBuy.addEventListener("click", () => {
+    buyForm.style.display = "none";
   });
 });
