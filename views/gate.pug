@@ -1,0 +1,63 @@
+doctype html
+html(lang="pl")
+  head
+    meta(name='viewport', content='width=device-width')
+    meta(charset='utf-8')
+    link(rel="stylesheet", href="/styles/sass/style.css")
+    title Bramka Płatnicza
+  body
+    header
+      .container
+        .brand
+          img.logo(src="/ticketsy.png", alt="Ticketsy Logo")
+        nav
+          ul.nav-list
+            li
+              a(href="/") Home
+            li
+              a(href="/events") Events
+            if isLoggedIn
+              li
+                a.btn(href="/logout") Wyloguj
+            else
+              li
+                a(href="/login") Login
+              li
+                a.btn(href="/register") Sign Up
+
+    main
+      .form-container
+        .form-card.gate-card
+          h1 Bramka płatnicza
+          p.form-subtitle Sprawdź dane rezerwacji przed płatnością
+
+          .gate-summary
+            .gate-row
+              span.gate-label Wydarzenie 
+              span.gate-value #{eventTitle || "(brak)"}
+            if eventDate
+              .gate-row
+                span.gate-label Data 
+                span.gate-value #{new Date(eventDate).toLocaleString('pl-PL')}
+            if eventLocation
+              .gate-row
+                span.gate-label Lokalizacja
+                span.gate-value #{eventLocation}
+            .gate-row
+              span.gate-label Miejsce 
+              span.gate-value #{seatNumber}
+            .gate-row
+              span.gate-label Użytkownik 
+              span.gate-value #{firstName} #{lastName} (#{age})
+            if eventPrice !== null
+              .gate-row
+                span.gate-label Cena 
+                span.gate-value #{eventPrice} zł
+            if expiresAt
+              .gate-row
+                span.gate-label Rezerwacja ważna do 
+                span.gate-value #{new Date(expiresAt).toLocaleTimeString('pl-PL')}
+
+          form(action="/events/gate/bought", method="post")
+            input(type="hidden", name="reservationId", value=reservationId)
+            button.btn.btn-full(type="submit") Zapłać

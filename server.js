@@ -38,4 +38,37 @@ app.use("/register", registerRoutes);
 app.use("/events", eventsRoutes);
 app.use("/admin-panel", cmsRoutes);
 
+async function expireReservationsOnce() {
+  try {
+    const now = new Date();
+    const result = await db
+      .collection("reservations")
+      .updateMany(
+        { status: "active", expiresAt: { $lte: now } },
+        { $set: { status: "expired" } }
+      );
+    if (result.modifiedCount > 0) {
+      console.log(`Expired reservations updated: ${result.modifiedCount}`);
+    }
+  } catch (err) {
+    console.error("Failed to expire reservations:", err);
+  }
+}
+
+(async () => {
+  try {
+    await db
+      .collection("reservations")
+      .createIndex({ status: 1, expiresAt: 1 });
+    await db
+      .collection("reservations")
+      .createIndex({ eventId: 1, seatNumber: 1 });
+  } catch (err) {
+    console.error("Failed to create reservation indexes:", err);
+  }
+})();
+
+setInterval(expireReservationsOnce, 30_000);
+expireReservationsOnce();
+
 app.listen(3000);

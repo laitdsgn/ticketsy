@@ -1,0 +1,18 @@
+doctype html
+html(lang="pl")
+  head
+    meta(name="viewport", content="width=device-width")
+    meta(charset="utf-8")
+    link(rel="stylesheet", href="/styles/sass/style.css")
+    title Transakcja zaakceptowana
+  body
+    main
+      .form-container
+        .form-card
+          h1 Transakcja zaakceptowana
+          p Za 5 sekund wrócisz do listy wydarzeń.
+
+    script.
+      setTimeout(function () {
+        window.location.href = "/events";
+      }, 5000);

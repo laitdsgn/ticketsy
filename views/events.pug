@@ -35,15 +35,15 @@ html
         button(type="button" id="close-buy") X 
         form(action="/events/ticket", method="post").form 
           h2 KUP BILET
-          input(type="text", name="id" hidden id="id-v")
+          input(type="text", name="id" hidden id="id-v" required)
           br
-          input(type="number", name="seat" placeholder="Miejsce" id="totalSeats")
+          input(type="number", name="seat" placeholder="Miejsce" id="totalSeats" required)
           br
-          input(type="text", name="imie" placeholder="Imie")
+          input(type="text", name="imie" placeholder="Imie" required)
           br
-          input(type="text", name="nazwisko" placeholder="Nazwisko")
+          input(type="text", name="nazwisko" placeholder="Nazwisko" required ) 
           br
-          input(type="number", name="wiek" min="18" placeholder="Wiek (min 18 lat)")
+          input(type="number", name="wiek" min="18" placeholder="Wiek (min 18 lat)" required)
           br
           button(type="submit").btn.btn-primary ZAAKCEPTUJ
     footer.footer

@@ -281,6 +281,43 @@ p {
   }
 }
 
+.gate-card {
+  max-width: 520px;
+}
+
+.gate-summary {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  padding: 12px 14px;
+  border: 2px solid #e5e7eb;
+  border-radius: 10px;
+  margin-bottom: 20px;
+}
+
+.gate-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  gap: 14px;
+}
+
+.gate-label {
+  font-size: 13px;
+  color: $gray;
+  white-space: nowrap;
+  color: $primary;
+  font-weight: 700;
+}
+
+.gate-value {
+  font-size: 14px;
+  color: #111827;
+  text-align: right;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
 .form-subtitle {
   text-align: center;
   color: $gray;
