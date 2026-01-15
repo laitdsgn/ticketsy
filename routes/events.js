@@ -7,10 +7,15 @@ const router = express.Router();
 router.get("/", async (req, res) => {
   try {
     await connect();
-    res.render("events");
-    console.log("events");
+    const userIdValue = req.cookies["userId"];
+    if (userIdValue) {
+      res.render("events");
+      console.log("events");
+    } else {
+      res.render("error", { error_message: "Nie jesteś zalogowany" });
+    }
   } catch (err) {
-    res.status(500).send("Server error");
+    res.status(500).send("Server error" + err);
   }
 });
 
@@ -37,8 +42,11 @@ router.post("/ticket", async (req, res) => {
       const isReservationOnSeat = await db
         .collection("reservations")
         .findOne({ seatNumber: Number(seat), status: "active" });
+      const isBoughtOnSeat = await db
+        .collection("tickets")
+        .findOne({ seatNumber: Number(seat) });
       let reservationId = null;
-      if (!isReservationOnSeat) {
+      if (!isReservationOnSeat && !isBoughtOnSeat) {
         const insertResult = await db.collection("reservations").insertOne({
           _id: new ObjectId(),
           userId: new ObjectId(userIdValue),
@@ -67,7 +75,7 @@ router.post("/ticket", async (req, res) => {
         expiresAt,
       });
     } else {
-      return res.render("error-ticket");
+      return res.render("error");
     }
   } catch (err) {
     return res.status(500).send("Server error" + err);
@@ -81,7 +89,7 @@ router.post("/gate/bought", async (req, res) => {
     const userIdValue = req.cookies["userId"];
 
     if (!reservationId || !userIdValue) {
-      return res.status(400).render("error");
+      return res.status(400).render("error", "nie mieszaj w wartościach ID!");
     }
 
     await db.collection("reservations").updateOne(
@@ -92,6 +100,29 @@ router.post("/gate/bought", async (req, res) => {
       },
       { $set: { status: "expired" } }
     );
+
+    const targetReservation = await db.collection("reservations").findOne({
+      _id: new ObjectId(reservationId),
+      userId: new ObjectId(userIdValue),
+    });
+
+    const isReservationOnSeat = await db.collection("reservations").findOne({
+      seatNumber: Number(targetReservation.seatNumber),
+      status: "active",
+    });
+    const isBoughtOnSeat = await db
+      .collection("tickets")
+      .findOne({ seatNumber: Number(targetReservation.seatNumber) });
+
+    if (!isReservationOnSeat && !isBoughtOnSeat) {
+      await db.collection("tickets").insertOne({
+        _id: new ObjectId(),
+        userId: new ObjectId(userIdValue),
+        eventId: new ObjectId(targetReservation.eventId),
+        seatNumber: Number(targetReservation.seatNumber),
+        boughtAt: new Date(),
+      });
+    }
 
     return res.redirect("/events/transaction-accepted");
   } catch (err) {

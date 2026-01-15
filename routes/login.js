@@ -44,7 +44,7 @@ router.post("/", async (req, res) => {
       res.render("error-login");
     }
   } else {
-    res.render("error");
+    res.render("error", "zle wartosci w polach");
   }
 });
 
