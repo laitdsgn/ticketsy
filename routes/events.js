@@ -1,7 +1,9 @@
 import express from "express";
+import fs from "fs";
 import connect from "../public/mongoconnect.js";
 import { db } from "../public/mongoconnect.js";
 import { MongoClient, ObjectId } from "mongodb";
+import PDFDocument from "pdfkit";
 const router = express.Router();
 
 router.get("/", async (req, res) => {
@@ -124,7 +126,112 @@ router.post("/gate/bought", async (req, res) => {
       });
     }
 
-    return res.redirect("/events/transaction-accepted");
+    const EventInfo = await db.collection("events").findOne(
+      { _id: new ObjectId(targetReservation.eventId) },
+      {
+        projection: {
+          thumbnail: 1,
+          title: 1,
+          description: 1,
+          location: 1,
+          _id: 0,
+        },
+      }
+    );
+
+    const ticketPDF = new PDFDocument();
+    const ticketPath = `public/tickets/${userIdValue}_${targetReservation.seatNumber}.pdf`;
+    const writeStream = fs.createWriteStream(ticketPath);
+
+    ticketPDF.pipe(writeStream);
+
+    ticketPDF
+      .rect(0, 0, ticketPDF.page.width, ticketPDF.page.height)
+      .fill("#f5f5f5");
+
+    if (EventInfo?.thumbnail) {
+      ticketPDF.image("public" + EventInfo.thumbnail, 50, 30, {
+        fit: [150, 150],
+        align: "center",
+      });
+    }
+
+    ticketPDF
+      .font("Helvetica-Bold")
+      .fontSize(20)
+      .fillColor("black")
+      .text(EventInfo?.title || "Event Ticket", 220, 40, { width: 300 });
+
+    ticketPDF
+      .font("Helvetica")
+      .fontSize(12)
+      .fillColor("black")
+      .text("Lokalizacja: " + (EventInfo?.location || "N/A"), 220, 110, {
+        width: 300,
+      });
+
+    ticketPDF
+      .fontSize(10)
+      .fillColor("black")
+      .text("Opis: " + (EventInfo?.description || "N/A"), 220, 135, {
+        width: 300,
+        height: 80,
+        ellipsis: true,
+      });
+
+    ticketPDF
+      .strokeColor("#333")
+      .lineWidth(1)
+      .moveTo(40, 250)
+      .lineTo(560, 250)
+      .stroke();
+
+    ticketPDF
+      .font("Helvetica-Bold")
+      .fontSize(14)
+      .fillColor("#000000")
+      .text("DETALE", 50, 270);
+
+    ticketPDF
+      .font("Helvetica")
+      .fontSize(11)
+      .fillColor("#000000")
+      .text("Siedzenie: " + targetReservation.seatNumber, 50, 300);
+
+    ticketPDF
+      .fillColor("#000000")
+      .text("Bilet: " + reservationId?.toString().slice(0, 8) || "", 50, 325);
+
+    ticketPDF
+      .fillColor("#000000")
+      .text("Uzytkownik: " + userIdValue.slice(0, 8) || "", 50, 350);
+
+    ticketPDF
+      .fillColor("#000000")
+      .text("Data: " + new Date().toLocaleDateString("pl-PL"), 50, 375);
+
+    ticketPDF.fontSize(10).fillColor("#000000").text("BARCODE", 50, 420);
+
+    const barcodeData = (reservationId?.toString() || "").substring(0, 12);
+    let xPos = 50;
+    for (let i = 0; i < barcodeData.length; i++) {
+      const charCode = barcodeData.charCodeAt(i);
+      const barWidth = (charCode % 3) + 1;
+      const barHeight = (charCode % 5) + 15;
+      ticketPDF
+        .fillColor("#000000")
+        .rect(xPos, 445, barWidth * 2, barHeight)
+        .fill();
+      xPos += barWidth * 2 + 2;
+    }
+
+    ticketPDF.fontSize(9).fillColor("#000000").text(barcodeData, 50, 470);
+
+    ticketPDF.end();
+
+    writeStream.on("finish", () => {
+      return res.redirect("/events/transaction-accepted");
+    });
   } catch (err) {
     return res.status(500).send("Server error" + err);
   }

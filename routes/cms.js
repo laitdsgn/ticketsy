@@ -19,13 +19,39 @@ const storage = multer.diskStorage({
 });
 const upload = multer({ storage });
 
-router.get("/", (req, res) => {
+// Admin middleware to check user role
+const adminOnly = async (req, res, next) => {
+  const userIdValue = req.cookies["userId"];
+
+  if (!userIdValue) {
+    return res.render("error", { error_message: "Nie jesteś zalogowany" });
+  }
+
+  try {
+    await connect();
+    const user = await db.collection("users").findOne({
+      _id: new ObjectId(userIdValue),
+    });
+
+    if (!user || user.role !== "admin") {
+      return res.render("error", {
+        error_message: "Brak dostępu. Wymagane uprawnienia administratora",
+      });
+    }
+
+    next();
+  } catch (err) {
+    return res.status(500).send("Server error: " + err);
+  }
+};
+
+router.get("/", adminOnly, (req, res) => {
   connect();
   console.log("cms");
   res.render("cms");
 });
 
-router.post("/", upload.single("thumbnail"), async (req, res) => {
+router.post("/", adminOnly, upload.single("thumbnail"), async (req, res) => {
   const { title, description, data, location, price, totalSeats } = req.body;
   try {
     let thumbnailPath = "";
