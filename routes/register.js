@@ -1,11 +1,10 @@
 import express from "express";
-import connect from "../public/mongoconnect.js";
-import { db } from "../public/mongoconnect.js";
-import { MongoClient, ObjectId } from "mongodb";
+import connect, { db } from "../public/mongoconnect.js";
+import { ObjectId } from "mongodb";
 const router = express.Router();
 
-router.get("/", (req, res) => {
-  connect();
+router.get("/", async (req, res) => {
+  await connect();
   res.render("register");
   console.log("Register");
 });
@@ -35,7 +34,11 @@ router.post("/", async (req, res) => {
     } catch (err) {
       if (err.code === 11000) {
         console.log("Email already exists");
+        return res.render("error-email", {
+          error_message: "Email już istnieje",
+        });
       }
+      return res.status(500).send("Server error: " + err);
     }
   } else {
     res.render("error-email");

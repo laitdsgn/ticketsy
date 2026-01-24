@@ -57,7 +57,7 @@ document.addEventListener("DOMContentLoaded", () => {
           buyForm.style.display = "block";
           idValueForm.value = eventId;
           totalSeat.min = 1;
-          totalSeats.max = totalSeatsValue;
+          totalSeat.max = totalSeatsValue;
         });
       }
     });

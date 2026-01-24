@@ -47,9 +47,8 @@ document.addEventListener("DOMContentLoaded", () => {
   form.addEventListener("submit", (e) => {
     const isEmailValid = validateEmail();
     const isPasswordValid = validatePassword();
-    const isConfirmValid = validateConfirmPassword();
 
-    if (!isEmailValid || !isPasswordValid || !isConfirmValid) {
+    if (!isEmailValid || !isPasswordValid) {
       e.preventDefault();
     }
   });

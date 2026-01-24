@@ -1,7 +1,6 @@
 import express from "express";
-import connect from "../public/mongoconnect.js";
-import { db } from "../public/mongoconnect.js";
-import { MongoClient, ObjectId } from "mongodb";
+import connect, { db } from "../public/mongoconnect.js";
+import { ObjectId } from "mongodb";
 import multer from "multer";
 import path from "path";
 
@@ -45,8 +44,8 @@ const adminOnly = async (req, res, next) => {
   }
 };
 
-router.get("/", adminOnly, (req, res) => {
-  connect();
+router.get("/", adminOnly, async (req, res) => {
+  await connect();
   console.log("cms");
   res.render("cms");
 });

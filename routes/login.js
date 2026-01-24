@@ -2,13 +2,14 @@ import express from "express";
 import connect, { db } from "../public/mongoconnect.js";
 const router = express.Router();
 
-router.get("/", (req, res) => {
-  connect();
+router.get("/", async (req, res) => {
+  await connect();
   console.log("login");
   res.render("login");
 });
 
 router.post("/", async (req, res) => {
+  await connect();
   const { email, password, remember } = req.body;
 
   const rememberMe = remember === "enabled";
@@ -29,14 +30,8 @@ router.post("/", async (req, res) => {
         ...(rememberMe && { maxAge: 7 * 24 * 60 * 60 * 1000 }),
       };
 
-      res.cookie("userId", user._id.toString(), {
-        httpOnly: true,
-        cookieOptions,
-      });
-      res.cookie("userEmail", user.email, {
-        httpOnly: true,
-        cookieOptions,
-      });
+      res.cookie("userId", user._id.toString(), cookieOptions);
+      res.cookie("userEmail", user.email, cookieOptions);
 
       console.log("Zalogowano:", user.email);
       res.redirect("/events");
@@ -44,7 +39,7 @@ router.post("/", async (req, res) => {
       res.render("error-login");
     }
   } else {
-    res.render("error", "zle wartosci w polach");
+    res.render("error", { error_message: "Złe wartości w polach" });
   }
 });
 
