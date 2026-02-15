@@ -1,0 +1,90 @@
+doctype html
+html
+  head
+    meta(name='viewport', content='width=device-width')
+    meta(charset='utf-8')
+    link(rel="stylesheet", href="/styles/sass/style.css")
+    title Moje bilety
+  body
+    header
+      .container
+        .brand
+          img.logo(src="/ticketsy.png", alt="Ticketsy Logo")
+        nav
+          ul.nav-list
+            li
+              a(href="/") Home
+            li
+              a(href="/events") Events
+            if isLoggedIn
+              li
+                a(href="/panel") Moje bilety
+              li
+                a.btn(href="/logout") Wyloguj
+            else
+              li
+                a(href="/login") Login
+              li
+                a.btn(href="/register") Sign Up
+    
+    main
+      .container
+        .panel-header
+          h1 Moje bilety
+          p.user-email Zalogowany jako: #{userEmail}
+        
+        if tickets && tickets.length > 0
+          .tickets-grid
+            each ticket in tickets
+              .ticket-card
+                .ticket-thumbnail
+                  if ticket.event.thumbnail
+                    img(src=ticket.event.thumbnail, alt=ticket.event.title)
+                  else
+                    .no-thumbnail
+                      span 🎫
+                .ticket-info
+                  h3.ticket-title= ticket.event.title
+                  .ticket-details
+                    p
+                      strong Lokalizacja: 
+                      span= ticket.event.location
+                    p
+                      strong Miejsce: 
+                      span= ticket.seatNumber
+                    p
+                      strong Data zakupu: 
+                      span= ticket.boughtAt ? ticket.boughtAt.toLocaleDateString('pl-PL') : 'N/A'
+                  .ticket-actions
+                    if ticket.pdfExists
+                      a.btn-download(href="/panel/download/" + ticket.pdfFileName)
+                        span 📥
+                        span Pobierz PDF
+                    else
+                      span.btn-unavailable Bilet niedostępny
+        else
+          .no-tickets
+            .no-tickets-icon 🎫
+            h2 Nie masz jeszcze żadnych biletów
+            p Kup swój pierwszy bilet i pojawi się tutaj!
+            a.btn(href="/events") Przeglądaj wydarzenia
+
+    footer.footer
+      .container
+        .footer-content
+          .footer-section
+            h3 Ticketsy
+            p Twoje miejsce do odkrywania i kupowania biletów na najlepsze wydarzenia.
+          
+          .footer-section
+            h3 Szybkie linki
+            ul.footer-links
+              li
+                a(href="/") Strona główna
+              li
+                a(href="/events") Wydarzenia
+              li
+                a(href="/panel") Moje bilety
+        
+        .footer-bottom
+          p &copy; 2025 Ticketsy. Wszelkie prawa zastrzeżone. | Projekt portfolio
